@@ -84,4 +84,5 @@ class GetDfForPreprocessing:
         print('\nDropping columns with missing values above the threshold ...') 
         df.drop(above_treshold, axis=1, inplace=True)
         
+        print('\nDropping columns completed')
         return df  

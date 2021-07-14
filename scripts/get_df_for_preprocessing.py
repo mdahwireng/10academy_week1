@@ -86,3 +86,29 @@ class GetDfForPreprocessing:
         
         print('\nDropping columns completed')
         return df  
+
+def create_agg(df, slice_cols, agg_col):
+
+    dfs_agg = df[slice_cols].groupby(agg_col, axis=0).sum()
+    dfs_agg['num_xDR_sess'] = dfs_agg[slice_cols[2:-2]].notna().sum(axis=1)/2
+    dfs_agg['Tot_DL_UL (Bytes)'] = dfs_agg[['Total DL (Bytes)','Total UL (Bytes)']].sum(axis=1)
+    dfs_agg['Social Media total data (Bytes)'] = dfs_agg[['Social Media DL (Bytes)','Social Media UL (Bytes)']].sum(axis=1)
+    dfs_agg['Youtube total data (Bytes)'] = dfs_agg[['Youtube DL (Bytes)','Youtube UL (Bytes)']].sum(axis=1)
+    dfs_agg['Netflix total data (Bytes)'] = dfs_agg[['Netflix DL (Bytes)','Netflix UL (Bytes)']].sum(axis=1)
+    dfs_agg['Google total data (Bytes)'] = dfs_agg[['Google DL (Bytes)','Google UL (Bytes)']].sum(axis=1)
+    dfs_agg['Email total data (Bytes)'] = dfs_agg[['Email DL (Bytes)','Email UL (Bytes)']].sum(axis=1)
+    dfs_agg['Gaming total data (Bytes)'] = dfs_agg[['Gaming DL (Bytes)','Gaming UL (Bytes)']].sum(axis=1)
+    dfs_agg['Other total data (Bytes)'] = dfs_agg[['Other DL (Bytes)','Other UL (Bytes)']].sum(axis=1)
+
+    df_raw = dfs_agg[['num_xDR_sess',
+             'Tot_DL_UL (Bytes)',
+             'Social Media total data (Bytes)',
+             'Youtube total data (Bytes)',
+             'Netflix total data (Bytes)',
+             'Google total data (Bytes)',
+             'Email total data (Bytes)',
+             'Gaming total data (Bytes)',
+             'Other total data (Bytes)',
+             'Dur. (ms)'
+            ]]
+    return df_raw

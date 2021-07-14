@@ -4,21 +4,6 @@ import matplotlib.pyplot as plt
 def compare_date_app_usage(df, usage_lst, nrows, ncols, const_col, figsize, xlabel, ylabel):    
     fig, axes = plt.subplots(nrows=nrows, ncols=ncols, sharex=True, sharey=True, figsize=figsize)
 
-    usage_lst = ['Social Media DL (Bytes)',
-        'Social Media UL (Bytes)',
-        'Youtube DL (Bytes)',
-        'Youtube UL (Bytes)',
-        'Netflix DL (Bytes)',
-        'Netflix UL (Bytes)',
-        'Google DL (Bytes)',
-        'Google UL (Bytes)',
-        'Email DL (Bytes)',
-        'Email UL (Bytes)',
-        'Gaming DL (Bytes)',
-        'Gaming UL (Bytes)',
-        'Other DL (Bytes)',
-        'Other UL (Bytes)']
-
     index = 0
     print('Creating plots....')
     for ax in axes.flat: 
@@ -42,5 +27,10 @@ def compare_date_app_usage(df, usage_lst, nrows, ncols, const_col, figsize, xlab
     sns.set_context('paper')
     sns.set_style()    
     plt.subplots_adjust(top = 0.96, bottom=0.05, hspace=0.3, wspace=0.4)
-    fig.save('date_app_usage.jpg')
+    fig.savefig('date_app_usage.png')
+
     plt.show()
+
+
+    def create_pair_plot(df, vars, figsize):
+        sns.pairplot(data=df, vars=vars, diag_kind='kde', figsize=figsize)

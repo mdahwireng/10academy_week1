@@ -26,7 +26,12 @@ def create_data_partition(df, data_col_name, part_col_name, num_parts)->pd.DataF
     seg = df
     print('Creating {} partions using data from {}...',format(num_parts,data_col_name))
     seg[part_col_name] = pd.qcut(seg[data_col_name], num_parts,labels = False)
-    print('Done! Partions saved with column name {}',format(part_col_name))
+    print('\nDone! Partions saved with column name {}',format(part_col_name))
     return seg
 
-    
+def group_and_sum(df, groupby_col_name, sumby_col_lst)->pd.DataFrame:
+    print('Grouping and summing in process...')
+    seg = df
+    outp = seg.groupby(groupby_col_name)[sumby_col_lst].sum()
+    print('\nGrouping and summing completed.')
+    return outp

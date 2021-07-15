@@ -30,8 +30,8 @@ def create_data_partition(df, data_col_name, part_col_name, num_parts)->pd.DataF
     return seg
 
 def group_and_sum(df, groupby_col_name, sumby_col_lst)->pd.DataFrame:
-    print('Grouping and summing in process...')
+    print('Grouping and aggregation in process...')
     seg = df
     outp = seg.groupby(groupby_col_name)[sumby_col_lst].sum()
-    print('\nGrouping and summing completed.')
+    print('\nGrouping and aggregation completed.')
     return outp

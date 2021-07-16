@@ -19,7 +19,7 @@ def remove_outliers(df, threshold = 3, method='mean' )->pd.DataFrame:
         arr = colmn.values
         z = np.abs(stats.zscore(arr))
         outlier_pos = np.where(z > threshold)
-        while len(outlier_pos) != 0:
+        while len(outlier_pos[0]) != 0:
             print('Replacing outliers in {}'.format(col))
             arr[outlier_pos] = replacer
             # recompute the values to check if the data meets the requirements

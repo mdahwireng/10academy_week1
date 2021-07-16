@@ -48,6 +48,7 @@ def create_pair_plot(df, vars):
     #plt.show()
 
 def create_boxplot(df, filename, chart_title):
+    df = df.copy()
     minmax_scaler = MinMaxScaler()
     scaled_data = pd.DataFrame(minmax_scaler.fit_transform(df), columns=df.columns)
     fig, ax = plt.subplots(figsize=(20,15))

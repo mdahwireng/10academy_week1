@@ -13,17 +13,21 @@ def remove_outliers(df, threshold = 3, method='mean' )->pd.DataFrame:
             replacer = colmn.mean()
         # compute the z-score for all values
         print('Computing z-score for values...')
-        z = np.abs(stats.zscore(colmn))
-        arr = df[col].values
+        arr = colmn.values
+        z = np.abs(stats.zscore(arr))
         outlier_pos = np.where(z > threshold)
-        print('Replacing outliers in {}'.format(col))
-        arr[outlier_pos] = replacer
+        while len(outlier_pos) != 0:
+            print('Replacing outliers in {}'.format(col))
+            arr[outlier_pos] = replacer
+            # recompute the values to check if the data meets the requirements
+            z = np.abs(stats.zscore(arr))
+            outlier_pos = np.where(z > threshold)
         df[col] = arr
     print('Outlier removals complete')
     return df
 
 def create_data_partition(df, data_col_name, part_col_name, num_parts)->pd.DataFrame:
-    seg = df
+    seg = df.copy()
     print('Creating {} partions using data from {}...',format(num_parts,data_col_name))
     seg[part_col_name] = pd.qcut(seg[data_col_name], num_parts,labels = False)
     print('\nDone! Partions saved with column name {}',format(part_col_name))
@@ -31,7 +35,7 @@ def create_data_partition(df, data_col_name, part_col_name, num_parts)->pd.DataF
 
 def group_and_sum(df, groupby_col_name, sumby_col_lst)->pd.DataFrame:
     print('Grouping and aggregation in process...')
-    seg = df
+    seg = df.copy()
     outp = seg.groupby(groupby_col_name)[sumby_col_lst].sum()
     print('\nGrouping and aggregation completed.')
     return outp

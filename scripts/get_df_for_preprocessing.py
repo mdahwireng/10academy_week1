@@ -10,7 +10,7 @@ class GetDfForPreprocessing:
     """
     def __init__(self, df:pd.DataFrame):
         
-        self.df = df
+        self.df = df.copy()
         
     def print_df_info(self) -> None:
         """
@@ -85,10 +85,10 @@ class GetDfForPreprocessing:
         df.drop(above_treshold, axis=1, inplace=True)
         
         print('\nDropping columns completed')
-        return df  
+        return df 
 
 def create_agg(df, slice_cols, agg_col):
-
+    df = df.copy()
     dfs_agg = df[slice_cols].groupby(agg_col, axis=0).sum()
     dfs_agg = dfs_agg.reset_index()
     dfs_agg['num_xDR_sess'] = dfs_agg[slice_cols[2:-2]].notna().sum(axis=1)/2

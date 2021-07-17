@@ -50,7 +50,7 @@ def get_engagement_clusters(df, filename, n_clusters):
     ax.set_title('Customer Classification', fontsize=20)
     #plt.legend(label='Cutomer Clusters')
 
-    save_path = './img/'+ filename
+    save_path = '../img/'+ filename
     fig.savefig(save_path)
     print('Plot saved as {} in img directory'.format(filename))
     return df
@@ -82,6 +82,6 @@ def get_kmeans_k(df, filename):
     plt.xticks(fontsize=20)
     plt.yticks(fontsize=20)
     plt.title('The Elbow Method showing the optimal k', fontsize=20)
-    save_path = './img/'+filename
+    save_path = '../img/'+filename
     plt.savefig(save_path)
     print('Plotting Completed, file saved in img directory as {}'.format(filename))

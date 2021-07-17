@@ -30,7 +30,7 @@ def compare_date_app_usage(df, usage_lst, nrows, ncols, const_col, figsize, xlab
     sns.set_context('paper')
     sns.set_style('darkgrid')    
     plt.subplots_adjust(top = 0.96, bottom=0.05, hspace=0.3, wspace=0.4)
-    fig.savefig('./img/date_app_usage.jpg')
+    fig.savefig('../img/date_app_usage.jpg')
     print("Chart saved as 'date_app_usage.png' in img directory")
     #plt.show()
 
@@ -43,7 +43,7 @@ def create_pair_plot(df, vars):
     sns.set_context('paper')
     sns.set_style('darkgrid')    
     plt.subplots_adjust(top = 0.96, bottom=0.05, hspace=0.3, wspace=0.4)
-    sns_plot.savefig('./img/pair_plot.png')
+    sns_plot.savefig('../img/pair_plot.png')
     print("Chart saved as 'pair_plot.png' in img directory")
     #plt.show()
 
@@ -56,7 +56,7 @@ def create_boxplot(df, filename, chart_title):
     ax.tick_params(axis='x', labelsize=16, rotation=45)
     ax.tick_params(axis='y', labelsize=16)
     ax.set_title(chart_title, fontsize=16)
-    save_path = './img/'+filename
+    save_path = '../img/'+filename
     fig.savefig(save_path)
     print('Chart saved as {} in img directory'.format(filename))
 
@@ -85,5 +85,5 @@ def create_app_traffic_viz(df, filename):
     axes[1].set(xlabel='App', ylabel='Total Traffic (Bytes)')
     axes[1].set_title('Top 3 Most Used App', fontsize=22)
     plt.subplots_adjust(top = 0.96, bottom=0.05, hspace=0.3, wspace=0.4)
-    save_path = './img/'+filename
+    save_path = '../img/'+filename
     fig.savefig(save_path)

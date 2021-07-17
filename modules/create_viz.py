@@ -59,3 +59,31 @@ def create_boxplot(df, filename, chart_title):
     save_path = './img/'+filename
     fig.savefig(save_path)
     print('Chart saved as {} in img directory'.format(filename))
+
+
+def create_app_traffic_viz(df, filename):       
+    fig, axes = plt.subplots(1,2, figsize=(20, 15))
+    plt.rcParams.update({'axes.titlesize': 'Large'})
+
+
+    df = df.copy()
+    #colors= [category_color_dict[i] for i in temp_select_df.index]
+
+    df.set_index('App').sort_values('App').plot.pie(ax=axes[0], y='Total Traffic (Bytes)', startangle=15, fontsize=16, label="", colormap='rainbow_r')
+    
+    axes[0].set(xlabel='', ylabel='')
+    axes[0].set_title('App Usage', fontsize=22)
+
+
+    sns.barplot(ax=axes[1], data=df[:3], y='Total Traffic (Bytes)', x='App', palette='autumn')
+    sns.set_context('paper')
+    sns.set_style('dark')
+    axes[1].set_xlabel(xlabel='Apps',fontsize=20)
+    axes[1].set_ylabel(ylabel='Total upload+download/(ms)',fontsize=20)
+    axes[1].tick_params(axis='y', labelsize=20)
+    axes[1].tick_params(axis='x', labelsize=20)
+    axes[1].set(xlabel='App', ylabel='Total Traffic (Bytes)')
+    axes[1].set_title('Top 3 Most Used App', fontsize=22)
+    plt.subplots_adjust(top = 0.96, bottom=0.05, hspace=0.3, wspace=0.4)
+    save_path = './img/'+filename
+    fig.savefig(save_path)

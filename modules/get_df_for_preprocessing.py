@@ -89,9 +89,9 @@ class GetDfForPreprocessing:
 
 def create_agg(df, slice_cols, agg_col):
     df = df.copy()
+    df['num_xDR_sess'] = df[slice_cols[3:-2]].notna().sum(axis=1)/2
     dfs_agg = df[slice_cols].groupby(agg_col, axis=0).sum()
-    dfs_agg = dfs_agg.reset_index()
-    dfs_agg['num_xDR_sess'] = dfs_agg[slice_cols[2:-2]].notna().sum(axis=1)/2
+    #dfs_agg = dfs_agg.reset_index()
     dfs_agg['Tot_DL_UL (Bytes)'] = dfs_agg[['Total DL (Bytes)','Total UL (Bytes)']].sum(axis=1)
     dfs_agg['Social Media total data (Bytes)'] = dfs_agg[['Social Media DL (Bytes)','Social Media UL (Bytes)']].sum(axis=1)
     dfs_agg['Youtube total data (Bytes)'] = dfs_agg[['Youtube DL (Bytes)','Youtube UL (Bytes)']].sum(axis=1)

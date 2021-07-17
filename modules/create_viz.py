@@ -14,7 +14,7 @@ def compare_date_app_usage(df, usage_lst, nrows, ncols, const_col, figsize, xlab
         #colors = np.random.random((20, 3))
         sns.set(rc={'figure.figsize':(5,5)})
         sns.scatterplot(x, y, ax=ax)
-        ax.tick_params(axis='x', labelsize=16, rotation=75)
+        ax.tick_params(axis='x', labelsize=16, rotation=45)
         ax.tick_params(axis='y', labelsize=16)
         ax.set_title(usage_lst[index], fontsize=16)
         #ax.set(xticks=np.linspace(0, 10, 6), yticks=np.linspace(0, 10, 6))
@@ -30,8 +30,8 @@ def compare_date_app_usage(df, usage_lst, nrows, ncols, const_col, figsize, xlab
     sns.set_context('paper')
     sns.set_style('darkgrid')    
     plt.subplots_adjust(top = 0.96, bottom=0.05, hspace=0.3, wspace=0.4)
-    fig.savefig('date_app_usage.png')
-    print("Chart saved as 'date_app_usage.png' in home directory")
+    fig.savefig('./img/date_app_usage.jpg')
+    print("Chart saved as 'date_app_usage.png' in img directory")
     #plt.show()
 
 
@@ -43,8 +43,8 @@ def create_pair_plot(df, vars):
     sns.set_context('paper')
     sns.set_style('darkgrid')    
     plt.subplots_adjust(top = 0.96, bottom=0.05, hspace=0.3, wspace=0.4)
-    sns_plot.savefig("pair_plot.png")
-    print("Chart saved as 'pair_plot.png' in home directory")
+    sns_plot.savefig('./img/pair_plot.png')
+    print("Chart saved as 'pair_plot.png' in img directory")
     #plt.show()
 
 def create_boxplot(df, filename, chart_title):
@@ -53,8 +53,9 @@ def create_boxplot(df, filename, chart_title):
     scaled_data = pd.DataFrame(minmax_scaler.fit_transform(df), columns=df.columns)
     fig, ax = plt.subplots(figsize=(20,15))
     sns.violinplot(ax=ax, data=scaled_data)
-    ax.tick_params(axis='x', labelsize=16, rotation=75)
+    ax.tick_params(axis='x', labelsize=16, rotation=45)
     ax.tick_params(axis='y', labelsize=16)
     ax.set_title(chart_title, fontsize=16)
-    fig.savefig(filename)
-    print('Chart saved as {} in home directory'.format(filename))
+    save_path = './img/'+filename
+    fig.savefig(save_path)
+    print('Chart saved as {} in img directory'.format(filename))

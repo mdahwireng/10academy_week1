@@ -10,7 +10,7 @@ class GetDfForPreprocessing:
     """
     def __init__(self, df:pd.DataFrame):
         
-        self.df = df.copy()
+        self.df = df
         
     def print_df_info(self) -> None:
         """
@@ -85,7 +85,7 @@ class GetDfForPreprocessing:
         df.drop(above_treshold, axis=1, inplace=True)
         
         print('\nDropping columns completed')
-        return df 
+        return df
 
 def create_agg(df, slice_cols, agg_col):
     df = df.copy()

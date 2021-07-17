@@ -8,6 +8,7 @@ import math
 
 def remove_outliers(df, threshold = 3, method='mean' )->pd.DataFrame:
     print('Iterating through columns of dataframe...')
+    df = df.copy()
     for col in df.columns:
         colmn = df[col]
         if method == 'median':

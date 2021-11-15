@@ -1,1 +1,1 @@
-# 10academy_week1 challenge. This is a data analysis on telecommunication data. The final deliverables must include slides and a link to dashbord. There must be testing and a docker file.
+# User analytics in tel-co industry
